@@ -1,0 +1,20 @@
+# --- Python virtual environment (regenerable, huge) ---
+.venv/
+venv/
+
+# --- Garak data: scan outputs, model cache, config (regenerable, huge) ---
+.garak/
+
+# --- Python bytecode / build ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.Python
+
+# --- OS cruft ---
+.DS_Store
+Thumbs.db
+
+# --- Editor / IDE ---
+.vscode/
+.idea/

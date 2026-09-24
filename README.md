@@ -15,6 +15,9 @@ Hands-on learning log for LLM / AI red teaming, using
   learned the probe / detector / score model and HTML-vs-JSONL reporting
 - **Session 3** — ran individual probes (`continuation`, `dan`, `leakreplay`);
   learned to read results critically: a hit ≠ meaningful, a SKIP ≠ a pass
+- **Session 4** — local Ollama target (`llama3.2:1b`); DAN probe now engages
+  (was SKIP on gpt2); found a `MitigationBypass` detector false positive on a
+  clean refusal
 
 ## Note
 Scan artifacts and the virtual environment are gitignored (regenerable).

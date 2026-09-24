@@ -1,0 +1,8 @@
+{
+  "ollama": {
+    "OllamaGeneratorChat": {
+      "host": "127.0.0.1:11434",
+      "timeout": 120
+    }
+  }
+}

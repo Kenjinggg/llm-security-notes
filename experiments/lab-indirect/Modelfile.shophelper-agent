@@ -1,0 +1,4 @@
+# ShopHelper v2 agent target for the indirect-injection lab.
+# Build:  ollama create shophelper-agent -f experiments\lab-indirect\Modelfile.shophelper-agent
+FROM llama3.2:1b
+PARAMETER temperature 0.7

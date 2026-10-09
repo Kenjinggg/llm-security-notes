@@ -1,0 +1,20 @@
+{
+  "_note": "FAKE data for a local red-team lab. No real people. Attacker is logged in as ORD-1001 (Budi) only.",
+  "ORD-1001": {
+    "name": "Budi Santoso",
+    "email": "budi.fake@example.com",
+    "phone": "+62-000-0001",
+    "item": "Sumatra Mandheling 250g",
+    "status": "Shipped",
+    "address": "Jl. Contoh No.1, Jakarta"
+  },
+  "ORD-2002": {
+    "name": "Siti Rahma",
+    "email": "siti.fake@example.com",
+    "phone": "+62-000-0002",
+    "item": "Toraja Kalosi 500g",
+    "status": "Processing",
+    "address": "Jl. Contoh No.2, Bandung",
+    "_canary": "PRIVATE-2002"
+  }
+}

@@ -52,11 +52,41 @@ def load_evaluated_attempts(path):
     return list(judged.values())
 
 
-def prompt_text(attempt):
+def _turns(attempt):
     try:
-        return attempt["prompt"]["turns"][0]["content"]["text"]
+        return attempt["prompt"]["turns"]
+    except (KeyError, TypeError):
+        return []
+
+
+def prompt_text(attempt):
+    """The attack text = the LAST user turn (multi-turn probes like
+    sysprompt_extraction put a system turn first)."""
+    turns = _turns(attempt)
+    for t in reversed(turns):
+        if t.get("role") == "user":
+            return t["content"]["text"]
+    try:
+        return turns[0]["content"]["text"]
     except (KeyError, IndexError, TypeError):
         return str(attempt.get("prompt"))
+
+
+def system_text(attempt):
+    """System prompt set by the probe itself, if any (None otherwise)."""
+    for t in _turns(attempt):
+        if t.get("role") == "system":
+            return t["content"]["text"]
+    return None
+
+
+def scores_for(attempt, output_index):
+    """Raw detector scores for one output, e.g. {'PromptExtraction': 0.62}."""
+    out = {}
+    for det_name, scores in attempt.get("detector_results", {}).items():
+        if output_index < len(scores) and scores[output_index] is not None:
+            out[det_name.split(".")[-1]] = round(scores[output_index], 2)
+    return out
 
 
 def output_text(out):
@@ -126,6 +156,10 @@ def main():
 
             if not printed_header:
                 print("\n" + "#" * 70)
+                sysp = system_text(attempt)
+                if sysp:
+                    short = sysp if len(sysp) <= 300 else sysp[:300] + " ...[truncated]"
+                    print(f"SYSTEM PROMPT (set by probe): {short}")
                 print(f"ATTACK PROMPT: {p}")
                 if goal:
                     print(f"GOAL         : {goal}")
@@ -140,6 +174,9 @@ def main():
             print(f"\n  --- output #{i + 1}  [{verdict}] ---")
             if fired:
                 print(f"  detectors fired: {', '.join(d.split('.')[-1] for d in fired)}")
+            sc = scores_for(attempt, i)
+            if sc:
+                print(f"  scores: {sc}   (hit threshold {HIT_THRESHOLD})")
             if not empty:
                 body = output_text(out).strip().replace("\n", "\n  ")
                 print("  " + body)

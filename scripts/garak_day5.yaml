@@ -1,0 +1,6 @@
+# Week 2 Day 5 — keep runs short on CPU.
+# garak's default soft_probe_prompt_cap is 256 prompts PER PROBE CLASS
+# (promptinject has 3 classes -> 768 prompts). 30 each is enough to compare
+# against the manual results; raise it later for a fuller run.
+run:
+  soft_probe_prompt_cap: 30

@@ -1,5 +1,7 @@
-# --- Python virtual environment (regenerable, huge) ---
-.venv/
+# --- Python virtual environments (regenerable, huge) ---
+# One venv per tool to avoid dependency conflicts (garak vs PyRIT need
+# incompatible `datasets` versions). .venv = PyRIT, .venv-garak = garak.
+.venv*/
 venv/
 
 # --- Garak data: scan outputs, model cache, config (regenerable, huge) ---
@@ -18,3 +20,8 @@ Thumbs.db
 # --- Editor / IDE ---
 .vscode/
 .idea/
+
+# --- Claude file-sync workaround files (not part of the project) ---
+.sync_nudge.txt
+**/.sync_nudge.txt
+lab_sync_check.txt

@@ -1,7 +1,7 @@
 # LLM Security Notes — Hands-on LLM Red Teaming
 
 Practical LLM / AI red-teaming work by **Kenji** ([@Kenjinggg](https://github.com/Kenjinggg)),
-a final-year Cybersecurity student. I build small, deliberately vulnerable LLM applications,
+a Computer Science (Cybersecurity) graduate focusing on AI security. I build small, deliberately vulnerable LLM applications,
 attack them with manual techniques and automated tools, measure how often the attacks succeed,
 and write the results up as security findings with root cause, fix and retest.
 
@@ -89,4 +89,5 @@ Results vary between runs (temperature 0.7), so findings report rates over batch
 single outputs. Virtual environments and garak scan output are gitignored.
 
 ## Contact
-Open an issue on this repository, or reach me via my GitHub profile.
+I'm open to AI security and red-teaming roles. Open an issue on this repository, or reach me
+via my GitHub profile.

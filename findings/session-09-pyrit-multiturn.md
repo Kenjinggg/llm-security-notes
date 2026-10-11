@@ -22,8 +22,8 @@ Finding 01 (plain ask ~8%). Target: the same `shophelper` canary bot.
 - **Attacker** = `llama3.2:3b` (writes each turn, steered to pose as new staff "Jordi" and
   escalate). **Target** = `shophelper` (`llama3.2:1b`, unchanged from Finding 01).
 - **Dependency conflict:** PyRIT needs `datasets>=4.8`, garak 0.17 needs `datasets<4.0` —
-  can't coexist in one venv. Ran PyRIT in the shared `.venv` for now; garak's
-  `sysprompt_extraction` probe is broken until split into per-tool venvs (TODO).
+  they can't coexist in one venv. Resolved the same day with one venv per tool:
+  `.venv` = PyRIT, `.venv-garak` = garak. Activate the matching one before running either.
 
 ## What PyRIT adds over garak / manual
 garak and the manual tests were **one-shot**: send a prompt, read the reply. PyRIT holds a
@@ -101,7 +101,7 @@ The cold one-shot ask skips this runway, which is why it only leaks ~8%.
 ## Next
 - Optional: `--runs 30` for a tighter rate; read a *failure* transcript to see what ShopHelper
   said when it held; try `CrescendoAttack` as a second strategy.
-- Session C: fold this into the portfolio. The multi-turn result strengthens the
-  secret-disclosure story (Finding 01) — either as a new finding or a "multi-turn amplification"
-  section. Then make the repo public with a client-facing README.
-- After Session B: split garak and PyRIT into per-tool venvs.
+- Done: folded into [Finding 01](finding-01-shophelper-secret-disclosure.md#multi-turn-amplification-pyrit)
+  as a "multi-turn amplification" section rather than a separate finding (same bug, same
+  root cause, same fix).
+- Done: per-tool venvs (see Setup).
